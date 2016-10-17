@@ -2,9 +2,13 @@
 
 
 # Author: Bela Ban
-
+export HOME=/home/van/work
 PT=$HOME/IspnPerfTest
 CP=$PT/classes:$PT/lib/*:$PT/conf
+
+echo HOME=${HOME}
+echo PT=${PT}
+echo CP=${CP}
 
 if [ -f $HOME/log4j.properties ]; then
     LOG="-Dlog4j.configuration=file:$HOME/log4j.properties"
