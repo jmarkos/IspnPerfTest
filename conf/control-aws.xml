@@ -9,8 +9,6 @@
         xmlns="urn:org:jgroups"
         xsi:schemaLocation="urn:org:jgroups http://www.jgroups.org/schema/jgroups.xsd">
     <TCP
-         external_addr="${JGROUPS_EXTERNAL_ADDR:match-interface:eth0}"
-	     bind_addr="site_local,match-interface:eth0"
          bind_port="${TCP_PORT:7900}"
 
          recv_buf_size="200k"
@@ -23,18 +21,7 @@
          thread_pool.max_threads="100"
          thread_pool.keep_alive_time="30000" />
 
-    <!--TCPPING
-        initial_hosts="172.31.47.164[7800],172.31.43.171[7800]"/-->
-
-    <!--
-      Uses an S3 bucket to discover other members in the cluster.
-      - "mybucket" needs to exist. If it doesn't exist, it will be created (the caller needs to have the correct permissions)
-      - access_key and secret_access_key need to be set unless the bucket is readable and writable by everyone
-      -->
-    <org.jgroups.aws.s3.NATIVE_S3_PING
-        region_name="${S3_REGION:us-east-1}"
-        bucket_name="${S3_BUCKET:ispn-perf-test}"
-     />
+   <TCPPING initial_hosts="172.31.34.35[7900],172.31.47.48[7900],172.31.40.213[7900],172.31.44.187[7900]" port_range="0" />
     
 
     <MERGE3 max_interval="30000"

@@ -23,11 +23,8 @@ fi;
 
 ### Note: change max heap to 2G on cluster01-08 (physical mem: 4G) !
 ### On edg-perf, this is OK (physical mem: 32G)
-FLAGS="$FLAGS -server -Xms2G -Xmx2G"
-FLAGS="$FLAGS -Djava.net.preferIPv4Stack=true"
+FLAGS="$FLAGS -server -Xms12g -Xmx12g -Djava.net.preferIPv4Stack=true -XX:+UseG1GC -XX:MaxGCPauseMillis=300 -XX:InitiatingHeapOccupancyPercent=70 -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps"
 
-## Delay asking backup for GET in Infinispan:
-FLAGS="$FLAGS -Dinfinispan.stagger.delay=5000"
 
 
 ## Radargun JVM options (comment the above -Xms/-Xmx)
